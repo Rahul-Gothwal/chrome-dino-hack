@@ -1,0 +1,42 @@
+/*
+1.this is we’re defining a constant variable and assigning it a function named autoPlayLoop, name can be anything you like.
+*/
+const autoPlayLoop = function() {
+ 
+/*
+2.in the debug screen, you can see properties of T-Rex defined in constants 
+jumping constant tells if T-Rex is jumping or running
+Here if T-Rex is in jumping position i.e if value of window.Runner.instance_.tRex.jumping is true, then there is nothing we can do as T-Rex is in middle of jumping so we're just going to back to functions call
+*/
+	if( window.Runner.instance_.tRex.jumping ) {
+ 
+	/*
+	3.requestAnimationFrame is the callback function in java-script which requests browser to call specified function before repainting. so here we're telling browser to execute our function again from start
+	*/
+		requestAnimationFrame(autoPlayLoop);
+		return; /*Exiting from function*/
+	}
+ 
+/*copying reference of current position of T-Rex from pre-defined variable*/
+	const tRexPos = window.Runner.instance_.tRex.xPos;
+ 
+/*copying reference of current obstacles from pre-defined variable*/
+	const obstacles = window.Runner.instance_.horizon.obstacles;
+ 
+/*here we calculate  all the possible upcoming obstacles by using  find() method, 'o' is can be any character, and we're considering obstacles which are INFRONT of T-Rex i.e xPos of obstacle should be greater than xPos of T-Rex*/
+	const nextObstacle = obstacles.find(o => o.xPos > tRexPos);
+ 
+/*Here  we're  checking two conditions 
+1. is  theres any obstacle
+2. if yes, then is that is at distance of 120 from T-Rex
+*/
+	if( nextObstacle && ( nextObstacle.xPos - tRexPos ) <= 120 ) {
+/*
+	if above both conditions are true then, we're calling startJump method of T-Rex to initiate the jump at specified speedc ie 50.
+*/
+		window.Runner.instance_.tRex.startJump(50)
+	}
+	requestAnimationFrame(autoPlayLoop); /*here  we're requesting again to call our autoplay function to update animation*/ 
+}
+/*making call again so that it keeps on executing*/
+requestAnimationFrame(autoPlayLoop);
