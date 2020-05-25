@@ -16,4 +16,4 @@ For this just paste the code from autoplay file and paste it into console.
 
 and dont forget to hit enter
 #### now your T-rex will have unlimited and life and will play the game itself.
-![console video](https://peaceful-raman-a94d08.netlify.app/simplescreenrecorder-2020-04-08_01.40.10%20(online-video-cutter.com).mp4)
+![console video](https://peaceful-raman-a94d08.netlify.app/dino.gif)
